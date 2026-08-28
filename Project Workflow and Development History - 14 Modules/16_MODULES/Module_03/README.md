@@ -26,7 +26,7 @@ Next module
 
 ## Current status
 
-Planned
+In Progress
 
 ## Current implementation
 
@@ -56,12 +56,11 @@ Document security assumptions and untrusted inputs.
 
 ## Current active task
 
-None.
+Environment and schema design complete. Writing SQLAlchemy models next.
 
 ## Exact next action
 
-Follow `09_MODULE_VERSION_HISTORY.md` and the latest project-history
-handoff to determine the next implementation task.
+Write SQLAlchemy models (starting with `sources`, then `tenders`, `tender_versions`, `documents`, `document_pages`, `classifications`, `tender_analysis`, `decisions`, `job_status`, `notifications`) per 17_SOFTWARE_DEVELOPMENT_SPECIFICATION.md Section 1. Then create the tables in the `tender_scanner` database via SQLAlchemy `create_all()` or Alembic migration.
 
 ## Agent continuation rule
 

@@ -17,3 +17,11 @@
 
 Created the complete 14-module documentation framework and multi-agent
 continuation rules. Application implementation has not yet started.
+
+## 2026-08-28 17:05
+
+- Added 17_SOFTWARE_DEVELOPMENT_SPECIFICATION.md (schema, API contract, testing, security, ops)
+- Added root README.md
+- Environment setup: Python 3.12.10, PostgreSQL 17, venv, core packages installed
+- Connected repo to GitHub
+- Added .env / .env.example, verified DATABASE_URL loads correctly
