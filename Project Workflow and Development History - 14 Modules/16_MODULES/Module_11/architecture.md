@@ -1,0 +1,31 @@
+# Architecture
+
+## Components
+
+-   Tender list view
+-   Tender detail/analysis view
+-   Source health view
+-   Decision action handler
+
+## Data flow
+
+``` text
+Database (tenders, analysis, document status, source health) -> Dashboard views -> User review -> Decision action -> Decision History
+```
+
+## Interfaces
+
+-   Reads: Module 03 (tenders, analysis, documents, source health).
+-   Writes: decision actions to Module 12.
+
+## Security considerations
+
+-   Local-only interface; no assumption of remote/multi-user access unless explicitly documented.
+-   Displayed source content remains clearly attributed to its source, not presented as verified fact.
+
+## Dependencies
+
+-   Module 03 for all displayed data.
+-   Module 10 for analysis.
+-   Module 12 for decision recording.
+-   Module 13 for source health data.
