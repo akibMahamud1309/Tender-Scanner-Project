@@ -2,10 +2,10 @@
 
 ## Normal workflow
 
-1.  Receive a batch of normalized records from a scan.
-2.  Generate a match key for each record.
-3.  Look up each match key in the Database.
-4.  Classify NEW / UNCHANGED / CHANGED and persist accordingly.
+1. Receive a batch of normalized records from a scan.
+2. Generate a match key for each record.
+3. Look up each match key in the Database.
+4. Classify NEW / UNCHANGED / CHANGED and persist accordingly.
 
 ## Failure/retry workflow
 

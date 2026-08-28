@@ -48,6 +48,7 @@ and eventually synced/exported).
 | source_url      | TEXT        | Original listing URL |
 | relevance_state | TEXT        | RELEVANT / NOT_RELEVANT / UNCERTAIN |
 | current_version | INT         | Increments on each material change |
+| metadata        | JSONB       | Current listing metadata such as deadline, scope, documents, and status |
 | created_at      | TIMESTAMPTZ | |
 | updated_at      | TIMESTAMPTZ | |
 

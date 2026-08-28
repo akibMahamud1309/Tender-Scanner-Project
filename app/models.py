@@ -67,6 +67,7 @@ class Tender(TimestampMixin, Base):
     source_url: Mapped[str] = mapped_column(Text, nullable=False)
     relevance_state: Mapped[str] = mapped_column(Text, nullable=False)
     current_version: Mapped[int] = mapped_column(Integer, nullable=False, server_default="1")
+    listing_metadata: Mapped[dict] = mapped_column("metadata", JSONB, nullable=False, default=dict)
 
     source: Mapped[Source] = relationship(back_populates="tenders")
     versions: Mapped[list[TenderVersion]] = relationship(back_populates="tender")

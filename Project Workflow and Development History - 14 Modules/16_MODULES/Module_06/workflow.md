@@ -2,10 +2,10 @@
 
 ## Normal workflow
 
-1.  Read relevant tender's source page.
-2.  Discover attachment links.
-3.  Download each new/changed attachment.
-4.  Validate and record metadata.
+1.  Read relevant tender metadata and discover attachment URLs.
+2.  Download each new/changed attachment with bounded response size.
+3.  Validate content signatures and calculate SHA-256.
+4.  Record `COLLECTED`, `FAILED`, or `SKIPPED_DUPLICATE`.
 
 ## Failure/retry workflow
 

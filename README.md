@@ -29,8 +29,10 @@ agents.
 
 ## Build status
 
-- Modules 01–03 (Source Registry, Source Scanner, Database): documented,
-  implementation in progress.
+- Modules 01–02 (Source Registry, Source Scanner): documented, not yet
+  implemented.
+- Module 03 (Database): initial SQLAlchemy schema, Alembic baseline, and
+  focused unit tests implemented.
 - Modules 04–14: documented (purpose, requirements, architecture, workflow),
   not yet implemented.
 
@@ -38,3 +40,10 @@ agents.
 
 Local-first: Python 3.12, FastAPI, PostgreSQL, Playwright (where needed),
 local OCR, local document storage.
+
+## Database development
+
+Install runtime and development dependencies with
+`python -m pip install -r requirements-dev.txt`. Set `DATABASE_URL` in a
+root `.env` file, then run `alembic upgrade head` to apply migrations and
+`python -m pytest tests -q` to run the database tests.

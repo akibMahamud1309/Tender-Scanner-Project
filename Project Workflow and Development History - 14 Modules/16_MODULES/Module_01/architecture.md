@@ -1,15 +1,32 @@
 # Architecture
 
-## \## Components
+## Components
+
+- Pydantic source request/response schemas
+- SQLAlchemy-backed source registry service
+- FastAPI `/api/v1/sources` routes
 
 ## Data flow
 
 ``` text
-Input → Processing → Output
+HTTP request → Pydantic validation → Source ORM service → PostgreSQL
 ```
 
-## \## Interfaces
+## Interfaces
 
-## \## Security considerations
+- `GET /api/v1/sources`
+- `POST /api/v1/sources`
+- `PATCH /api/v1/sources/{source_id}`
+- `GET /api/v1/sources/{source_id}/health`
 
-## \## Dependencies
+## Security considerations
+
+- URLs and configuration are validated as data and are never executed.
+- The application remains local-only until authentication is implemented.
+
+## Dependencies
+
+- FastAPI
+- Pydantic
+- SQLAlchemy
+- PostgreSQL

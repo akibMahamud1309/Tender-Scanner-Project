@@ -1,5 +1,11 @@
 # 14 --- CHANGE LOG
 
+## 2026-08-28 - Module 06 Document Collector
+
+- Added attachment discovery, safe document download and validation.
+- Added checksum-based duplicate avoidance and document status persistence.
+- Added document collection API and unit coverage.
+
 ## 2026-08-28 18:50
 
 - Implemented Module 03 initial database schema code:
@@ -10,6 +16,46 @@
 - Updated `.gitignore` to ignore Python `__pycache__/` directories.
 - Updated Module 03 README, architecture, workflow, functions,
   compatibility, and version docs.
+
+## 2026-08-28 21:25
+
+- Added pinned `requirements.txt` and `requirements-dev.txt`.
+- Added Alembic configuration and the initial 10-table schema migration.
+- Added focused Module 03 database tests; all five tests pass.
+- Updated root and Module 03 documentation with migration/test commands and
+  the next implementation task.
+
+## 2026-08-28 21:30
+
+- Implemented Module 01 Source Registry CRUD, validation, API routes, and
+  source scan-health lookup.
+- Added source schemas and five focused unit tests; full available suite
+  passes with 10 tests.
+- Updated Module 01 documentation and version history.
+
+## 2026-08-28 21:34
+
+- Implemented Module 02 safe HTTP source scanner, HTML listing parser,
+  bounded request handling, and scan job persistence.
+- Added source scan trigger route and five scanner unit tests; full suite
+  passes with 15 tests.
+- Updated Module 02 documentation and version history.
+
+## 2026-08-28 21:35
+
+- Implemented Module 04 deduplication and change detection.
+- Added deterministic match keys, field diffs, tender version history, and
+  current JSONB listing metadata.
+- Added batch deduplication API and seven tests; full suite passes with
+  22 tests.
+- Updated Module 04 documentation and the authoritative specification.
+
+## 2026-08-28 21:40
+
+- Implemented Module 05 deterministic IT/software relevance filtering.
+- Added source-configured rules, traceable classifications, relevance API
+  endpoint, and six tests; full suite passes with 28 tests.
+- Updated Module 05 documentation and version history.
 
 ## 2026-08-28
 

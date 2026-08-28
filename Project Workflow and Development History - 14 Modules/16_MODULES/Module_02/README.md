@@ -26,42 +26,48 @@ Next module
 
 ## Current status
 
-Planned
+Implemented - initial safe HTTP scanner
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+The scanner is implemented in `app/source_scanner.py`. It fetches configured
+HTML listing pages, normalizes links, deduplicates URLs, and records scan
+jobs in `job_status`.
 
 ## Dependencies
 
-See `compatibility.md`.
+Uses Module 01 source definitions and Module 03 `Source` / `JobStatus` models.
 
 ## Interfaces
 
-See `architecture.md`.
+Provides `POST /api/v1/sources/{source_id}/scan` plus reusable
+`fetch_source`, `parse_listings`, and `scan_source` functions.
 
 ## Database interaction
 
-Document all tables, queries, migrations, or database events used by
-this module.
+Creates `SCAN` rows in `job_status`, marking them `RUNNING`, `SUCCEEDED`, or
+`FAILED` with timestamps and error messages.
 
 ## Security
 
-Document security assumptions and untrusted inputs.
+Uses explicit HTTP(S) URLs, bounded timeout/item/delay settings, a descriptive
+user agent, and does not bypass authentication, CAPTCHA, WAF, or rate limits.
 
 ## Known limitations
 
--   Not yet implemented.
+-   The initial parser supports generic HTML links; source-specific selectors
+    and browser automation will be added only when an approved source requires
+    them.
 
 ## Current active task
 
-None.
+Implement source-specific listing adapters only where the approved source
+configuration requires them.
 
 ## Exact next action
 
-Follow `09_MODULE_VERSION_HISTORY.md` and the latest project-history
-handoff to determine the next implementation task.
+Add the first approved source configuration and connect scan listings to
+Module 04 deduplication.
 
 ## Agent continuation rule
 

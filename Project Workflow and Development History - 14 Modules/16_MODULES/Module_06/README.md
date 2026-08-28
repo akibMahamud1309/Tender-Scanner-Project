@@ -24,12 +24,14 @@ Document Processor
 
 ## Current status
 
-Planned
+Implemented (0.1.1)
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+The collector discovers `document_urls` from tender listing metadata, safely
+downloads HTTP(S) content, validates supported file signatures and size,
+computes SHA-256 checksums, persists document metadata, and skips collected
+duplicates.
 
 ## Dependencies
 
@@ -51,7 +53,8 @@ this module.
 
 ## Known limitations
 
--   Not yet implemented.
+-   HTML and office formats without recognized signatures are rejected.
+-   Storage defaults to `storage/documents/{tender_id}` through the API.
 
 ## Current active task
 

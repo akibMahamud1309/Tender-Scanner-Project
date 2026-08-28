@@ -23,25 +23,28 @@ Database
 
 ## Current status
 
-Planned
+Implemented - initial deduplication and change detection
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+Implemented in `app/deduplication.py`, with scanner listing input from Module
+02 and persistence through the Module 03 ORM models.
 
 ## Dependencies
 
-See `compatibility.md`.
+Depends on Module 02 `ScanListing` and Module 03 `Tender` /
+`TenderVersion` models.
 
 ## Interfaces
 
-See `architecture.md`.
+Provides reusable deduplication functions and the
+`POST /api/v1/sources/{source_id}/deduplicate` batch endpoint.
 
 ## Database interaction
 
-Document all tables, queries, migrations, or database events used by
-this module.
+Reads and writes `tenders`; changed records update current values and append
+`tender_versions`. Current listing metadata is stored in the `tenders.metadata`
+JSONB column.
 
 ## Security
 
@@ -50,16 +53,16 @@ this module.
 
 ## Known limitations
 
--   Not yet implemented.
+-   Relevance classification remains `UNCERTAIN` until Module 05 processes
+    the tender.
 
 ## Current active task
 
-None.
+Add Module 05 deterministic IT/software relevance filtering.
 
 ## Exact next action
 
-Follow `09_MODULE_VERSION_HISTORY.md` and the latest project-history
-handoff to determine the next implementation task.
+Connect deduplicated tenders to the relevance filter pipeline.
 
 ## Agent continuation rule
 

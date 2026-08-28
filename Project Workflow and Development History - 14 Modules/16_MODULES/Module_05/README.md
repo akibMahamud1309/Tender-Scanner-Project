@@ -23,25 +23,27 @@ Document Collector
 
 ## Current status
 
-Planned
+Implemented - initial deterministic relevance filter
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+Implemented in `app/relevance_filter.py`, using source-configured keyword
+rules and persisting traceable `Classification` rows.
 
 ## Dependencies
 
-See `compatibility.md`.
+Depends on Module 03 `Tender` and `Classification` models and Module 01 source
+configuration.
 
 ## Interfaces
 
-See `architecture.md`.
+Provides `POST /api/v1/tenders/{tender_id}/relevance` and reusable rule
+evaluation functions.
 
 ## Database interaction
 
-Document all tables, queries, migrations, or database events used by
-this module.
+Updates `tenders.relevance_state` and appends a rule-based row to
+`classifications` with rule IDs and matched-keyword evidence.
 
 ## Security
 
@@ -50,16 +52,16 @@ this module.
 
 ## Known limitations
 
--   Not yet implemented.
+-   Keyword matching is deterministic substring matching.
 
 ## Current active task
 
-None.
+Implement Module 06 Document Collector for relevant tenders.
 
 ## Exact next action
 
-Follow `09_MODULE_VERSION_HISTORY.md` and the latest project-history
-handoff to determine the next implementation task.
+Forward `RELEVANT` and `UNCERTAIN` tenders to document collection while
+retaining `NOT_RELEVANT` records for auditability.
 
 ## Agent continuation rule
 

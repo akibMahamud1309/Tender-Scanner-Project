@@ -41,6 +41,9 @@ Initial SQLAlchemy persistence layer is implemented:
   `17_SOFTWARE_DEVELOPMENT_SPECIFICATION.md` Section 1.
 - `scripts/create_tables.py` imports the models and runs
   `Base.metadata.create_all()` against the configured local database.
+- `alembic/` provides the migration environment and initial schema revision.
+- `tests/unit/test_database.py` verifies registered tables, constraints,
+  foreign keys, model registration, and session creation.
 
 ## Dependencies
 
@@ -76,21 +79,20 @@ credentials only.
 
 ## Known limitations
 
-- No Alembic migration setup yet; current table creation uses SQLAlchemy
-  `create_all()`.
+- The initial Alembic revision is a baseline for fresh databases; an existing
+  database created with `create_all()` must be stamped at that revision before
+  applying future migrations.
 - No repository/data-access helper functions beyond session creation.
-- No tests have been added yet.
 
 ## Current active task
 
-Initial schema implementation complete. Next active task is to add tests
-and decide whether to introduce Alembic before further schema changes.
+Initial schema tests and Alembic migration setup are complete. The next
+active task is to implement Module 01 Source Registry.
 
 ## Exact next action
 
-Add focused database tests that verify model metadata, required
-constraints, and session creation. Then choose Alembic migration setup
-before building Module 01/02 write paths against these models.
+Implement Module 01 Source Registry CRUD and validation against the stable
+database models and migration workflow.
 
 ## Agent continuation rule
 

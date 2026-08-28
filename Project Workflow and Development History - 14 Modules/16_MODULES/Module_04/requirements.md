@@ -8,6 +8,7 @@
 -   Classify each incoming record as NEW, UNCHANGED, or CHANGED.
 -   For CHANGED records, produce a field-level diff (deadline, scope, documents, status) rather than overwriting silently.
 -   Write a change event/history row for every CHANGED record instead of destroying the prior version.
+-   Store current listing metadata needed for deadline, scope, documents, and status comparisons.
 
 ## Non-functional requirements
 
@@ -32,3 +33,4 @@
 -   An identical record on a repeat scan is classified UNCHANGED and does not create a duplicate row.
 -   A record with an altered deadline or scope is classified CHANGED, with the old value retained in history and the new value current.
 -   No two records that share a stable match key ever exist as separate rows.
+-   Current metadata and append-only version history are both updated for CHANGED records.
