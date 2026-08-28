@@ -61,7 +61,12 @@ def parse_analysis_result(
     tender_id: Any,
 ) -> TenderAnalysisResult:
     choices = payload.get("choices")
-    content = choices[0].get("message", {}).get("content") if isinstance(choices, list) and choices else None
+    content = choices[0].get("message", {}).get("content") if isinstance(choices, list) and choices else payload.get("output_text")
+    if not isinstance(content, str):
+        output = payload.get("output")
+        if isinstance(output, list):
+            parts = [item.get("text") for item in output if isinstance(item, dict) and isinstance(item.get("text"), str)]
+            content = "".join(parts) or None
     if not isinstance(content, str):
         raise TenderAnalysisError("AI analysis response did not contain content.")
     try:

@@ -22,6 +22,15 @@ class AIProviderConfig:
             return f"{base}/chat/completions"
         return f"{base}/v1/chat/completions"
 
+    @property
+    def responses_url(self) -> str:
+        base = self.base_url.rstrip("/")
+        return f"{base}/v1/responses"
+
+    @property
+    def uses_responses_api(self) -> bool:
+        return self.name in {"openai", "chatgpt"}
+
 
 def resolve_ai_provider() -> AIProviderConfig:
     name = os.getenv("AI_PROVIDER", "terra").strip().lower()
@@ -45,3 +54,7 @@ def resolve_ai_provider() -> AIProviderConfig:
 def chat_completions_url(base_url: str) -> str:
     base = base_url.rstrip("/")
     return f"{base}/chat/completions" if base.endswith("/openai") else f"{base}/v1/chat/completions"
+
+
+def responses_url(base_url: str) -> str:
+    return f"{base_url.rstrip('/')}/v1/responses"

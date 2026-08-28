@@ -11,7 +11,7 @@ from uuid import UUID
 from sqlalchemy.orm import Session
 
 from app.models import Classification, Tender
-from app.ai_provider import chat_completions_url, resolve_ai_provider
+from app.ai_provider import chat_completions_url, resolve_ai_provider, responses_url
 
 
 class AIClassificationError(Exception):
@@ -53,7 +53,12 @@ def parse_classification_result(
     payload: dict[str, Any], *, source_text_by_page: dict[int, str], model_version: str, prompt_version: str
 ) -> AIClassificationResult:
     choices = payload.get("choices")
-    content = choices[0].get("message", {}).get("content") if isinstance(choices, list) and choices else None
+    content = choices[0].get("message", {}).get("content") if isinstance(choices, list) and choices else payload.get("output_text")
+    if not isinstance(content, str):
+        output = payload.get("output")
+        if isinstance(output, list):
+            parts = [item.get("text") for item in output if isinstance(item, dict) and isinstance(item.get("text"), str)]
+            content = "".join(parts) or None
     if not isinstance(content, str):
         raise AIClassificationError("AI response did not contain classification content.")
     try:
@@ -88,20 +93,25 @@ def call_ai_classifier(
     prompt_version: str = "classification-v1",
     opener: Any = urlopen,
     timeout: float = 120,
+    use_responses_api: bool = False,
 ) -> AIClassificationResult:
     if not api_key.strip() or not api_base_url.startswith(("http://", "https://")):
         raise AIClassificationError("AI provider configuration is invalid.")
     system, user = build_classification_prompt(tender, prompt_version=prompt_version)
-    request = Request(
-        chat_completions_url(api_base_url),
-        data=json.dumps(
-            {
+    request_payload = {
                 "model": model,
-                "temperature": 0,
-                "response_format": {"type": "json_object"},
+                "text": {"format": {"type": "json_object"}},
+                "input": [
+                    {"role": "system", "content": [{"type": "input_text", "text": system}]},
+                    {"role": "user", "content": [{"type": "input_text", "text": user}]},
+                ],
+            } if use_responses_api else {
+                "model": model, "temperature": 0, "response_format": {"type": "json_object"},
                 "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
             }
-        ).encode("utf-8"),
+    request = Request(
+        responses_url(api_base_url) if use_responses_api else chat_completions_url(api_base_url),
+        data=json.dumps(request_payload).encode("utf-8"),
         headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
         method="POST",
     )
@@ -130,6 +140,7 @@ def classify_tender_with_ai(
         api_key=api_key if api_key is not None else provider.api_key,
         api_base_url=api_base_url if api_base_url is not None else provider.base_url,
         model=model or (provider.model if provider else os.getenv("TERRA_MODEL", "gpt-5.6-terra")),
+        use_responses_api=bool(provider and provider.uses_responses_api),
         prompt_version=prompt_version,
         opener=opener,
     )
