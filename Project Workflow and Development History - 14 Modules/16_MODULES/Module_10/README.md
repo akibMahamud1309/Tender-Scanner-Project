@@ -24,12 +24,13 @@ Dashboard
 
 ## Current status
 
-Planned
+Implemented (0.1.1)
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+The module extracts a stable set of tender fields through the configured
+GPT-5.6 Terra endpoint, validates exact page evidence, marks absent fields
+`NOT_STATED`, and persists results for dashboard consumption.
 
 ## Dependencies
 
@@ -51,7 +52,7 @@ this module.
 
 ## Known limitations
 
--   Not yet implemented.
+-   AI output is rejected when fields or evidence are missing or fabricated.
 
 ## Current active task
 

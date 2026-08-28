@@ -26,5 +26,5 @@ Low-quality document/page -> OCR engine -> Normalized text output -> Traceabilit
 ## Dependencies
 
 -   Module 07 for routing.
--   Local OCR engine.
+-   OpenAI-compatible GPT-5.6 Terra OCR endpoint.
 -   Module 03 for persistence.

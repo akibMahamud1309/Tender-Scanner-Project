@@ -6,6 +6,32 @@
 - Added checksum-based duplicate avoidance and document status persistence.
 - Added document collection API and unit coverage.
 
+## 2026-08-28 - Module 08 OCR
+
+- Added configurable GPT-5.6 Terra OCR integration and page-level persistence.
+- Added strict response validation, explicit failure status, API route, and tests.
+
+## 2026-08-28 - Module 09 AI Classification
+
+- Added GPT-5.6 Terra classification adapter with validated labels,
+  confidence, page evidence, and model/prompt traceability.
+- Added persistence, manual-review handling, API route, and tests.
+
+## 2026-08-28 - Module 10 AI Tender Analysis
+
+- Added GPT-5.6 Terra tender field analysis with stable structured output,
+  evidence traceability, persistence, API integration, and tests.
+
+## 2026-08-28 - Module 11 Dashboard
+
+- Added React/Vite frontend dashboard and responsive tender review views.
+- Added search/filter interactions, source links, API proxy, CORS, and tender list endpoint.
+
+## 2026-08-28 - Module 12 Decision History
+
+- Added decision validation, append-only persistence, history retrieval, API
+  endpoints, dashboard actions, tests, and documentation.
+
 ## 2026-08-28 18:50
 
 - Implemented Module 03 initial database schema code:
@@ -71,6 +97,16 @@
   changed in this pass.
 
 ## 0.1.0 --- Initial project documentation
+
+## 2026-08-28 - Module 13 Scheduler
+
+- Added in-process scheduler helpers for due scans, overlap prevention,
+  exponential backoff, lifecycle status recording, tests, and API visibility.
+
+## 2026-08-28 - Module 14 Notifications
+
+- Added notification event deduplication, durable statuses, delivery failure
+  handling, unread/read APIs, dashboard metrics, tests, and documentation.
 
 Created the complete 14-module documentation framework and multi-agent
 continuation rules. Application implementation has not yet started.

@@ -68,3 +68,10 @@ class ListingInput(BaseModel):
     source_url: AnyHttpUrl
     reference_number: str | None = None
     metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class DecisionCreate(BaseModel):
+    decision: str
+    decline_reason: str | None = None
+    category: str | None = None
+    comment: str | None = None

@@ -25,12 +25,13 @@ Decision History
 
 ## Current status
 
-Planned
+Implemented (0.1.1)
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+The React dashboard provides a local tender review queue with search,
+relevance filters, summary metrics, source links, and a selected-tender detail
+panel backed by the FastAPI tender list endpoint.
 
 ## Dependencies
 
@@ -52,7 +53,8 @@ this module.
 
 ## Known limitations
 
--   Not yet implemented.
+-   Decision actions remain pending Module 12.
+-   Detailed analysis/document status panels will expand as their read APIs are added.
 
 ## Current active task
 

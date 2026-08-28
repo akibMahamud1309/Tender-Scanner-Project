@@ -13,6 +13,7 @@
 -   Classifications must be reproducible given the same model/prompt version and input.
 -   Must not fabricate evidence references; every classification cites real, retrievable source text.
 -   Should degrade gracefully (flag for manual review) if the AI provider is unavailable, rather than blocking the whole pipeline.
+-   The configured OpenAI-compatible GPT-5.6 Terra endpoint is used as the AI provider.
 
 ## Inputs
 

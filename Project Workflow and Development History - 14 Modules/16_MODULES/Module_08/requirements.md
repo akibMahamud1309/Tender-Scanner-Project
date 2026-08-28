@@ -10,7 +10,7 @@
 
 ## Non-functional requirements
 
--   OCR should run locally, consistent with the project's local-processing direction.
+-   OCR is delegated to the configured GPT-5.6 Terra API.
 -   Must not silently produce empty output for a failed OCR pass; failure is recorded explicitly.
 -   Should be reasonably efficient given local hardware constraints (page-level, not whole-document, OCR where possible).
 

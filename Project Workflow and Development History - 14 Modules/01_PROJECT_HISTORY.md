@@ -23,6 +23,49 @@ conversation. Never leave a vague handoff.
 - Added `/api/v1/tenders/{tender_id}/documents` and five focused tests.
 - Next action: implement Module 07 Document Processor.
 
+## 2026-08-28 - Module 08 OCR
+
+- Added GPT-5.6 Terra OpenAI-compatible OCR adapter, strict page-aware output
+  validation, normalization, persistence, failure status, and API route.
+- Next action: implement Module 07 Document Processor integration with OCR.
+
+## 2026-08-28 - Module 09 AI Classification
+
+- Added versioned Terra classification prompts, structured output validation,
+  evidence verification, persistence, manual-review flagging, and API route.
+- Next action: implement Module 10 AI Tender Analysis.
+
+## 2026-08-28 - Module 10 AI Tender Analysis
+
+- Added Terra structured field extraction, multi-document consolidation,
+  exact evidence validation, `NOT_STATED` handling, persistence, and API route.
+- Next action: implement Module 11 Dashboard.
+
+## 2026-08-28 - Module 11 Dashboard
+
+- Added React/Vite dashboard with tender metrics, search, relevance filters,
+  responsive list/detail views, and FastAPI tender list endpoint with CORS.
+- Decision actions remain pending Module 12; next action is Module 12.
+
+## 2026-08-28 - Module 12 Decision History
+
+- Added validated append-only bid/no-bid decisions, chronological history API,
+  and React dashboard decision actions.
+- Next action: implement Module 13 Scheduler.
+
+## 2026-08-28 - Module 13 Scheduler
+
+- Added due-source detection, overlap prevention, retry backoff, lifecycle
+  persistence, and scheduler API visibility.
+- Next action: implement Module 14 Notifications.
+
+## 2026-08-28 - Module 14 Notifications
+
+- Added deduplicated durable notification events, delivery failure handling,
+  unread/read APIs, dashboard unread metrics, tests, and documentation.
+- All 14 planned modules now have initial implementations; next action is
+  integration hardening and end-to-end validation.
+
 ## 2026-08-28 17:05 (Session 2)
 
 - Set up local development environment: Python 3.12.10 installed via `py install manager` (alongside 3.13.5, 3.14.7), venv created in project root.

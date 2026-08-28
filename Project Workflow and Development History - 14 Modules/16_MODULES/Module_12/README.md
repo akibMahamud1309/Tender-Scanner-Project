@@ -24,12 +24,12 @@ Decision History
 
 ## Current status
 
-Planned
+Implemented (0.1.1)
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+The module validates and appends bid/no-bid decisions, requires reason and
+category for no-bid entries, and exposes chronological decision history.
 
 ## Dependencies
 
@@ -50,7 +50,7 @@ this module.
 
 ## Known limitations
 
--   Not yet implemented.
+-   Decision categories remain free text until a maintained taxonomy is introduced.
 
 ## Current active task
 

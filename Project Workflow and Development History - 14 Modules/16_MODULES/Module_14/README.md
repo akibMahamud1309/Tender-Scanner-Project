@@ -24,12 +24,13 @@ Notifications
 
 ## Current status
 
-Planned
+Implemented (0.1.1)
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+The notification service creates durable unread event records, deduplicates
+events by key, exposes unread retrieval and read acknowledgement, and reports
+delivery failures explicitly.
 
 ## Dependencies
 
@@ -50,7 +51,8 @@ this module.
 
 ## Known limitations
 
--   Not yet implemented.
+-   Delivery is currently represented by the local database/in-process adapter;
+    email or chat channels can be added later.
 
 ## Current active task
 

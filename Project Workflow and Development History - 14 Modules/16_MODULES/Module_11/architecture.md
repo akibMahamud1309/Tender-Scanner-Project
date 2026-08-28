@@ -5,7 +5,7 @@
 -   Tender list view
 -   Tender detail/analysis view
 -   Source health view
--   Decision action handler
+-   Decision action handler (Module 12 integration pending)
 
 ## Data flow
 
@@ -15,7 +15,7 @@ Database (tenders, analysis, document status, source health) -> Dashboard views 
 
 ## Interfaces
 
--   Reads: Module 03 (tenders, analysis, documents, source health).
+-   Reads: FastAPI tender list endpoint backed by Module 03.
 -   Writes: decision actions to Module 12.
 
 ## Security considerations

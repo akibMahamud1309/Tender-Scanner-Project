@@ -24,12 +24,12 @@ Scheduler
 
 ## Current status
 
-Planned
+Implemented (0.1.1)
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+The scheduler checks due source scans, prevents equivalent running jobs,
+records lifecycle statuses, and provides exponential retry backoff helpers.
 
 ## Dependencies
 
@@ -50,7 +50,8 @@ this module.
 
 ## Known limitations
 
--   Not yet implemented.
+-   The current implementation is an in-process orchestration layer; an
+    external daemon/worker is not included.
 
 ## Current active task
 

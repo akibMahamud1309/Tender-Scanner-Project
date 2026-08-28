@@ -47,3 +47,22 @@ Install runtime and development dependencies with
 `python -m pip install -r requirements-dev.txt`. Set `DATABASE_URL` in a
 root `.env` file, then run `alembic upgrade head` to apply migrations and
 `python -m pytest tests -q` to run the database tests.
+
+## Dashboard development
+
+Run the FastAPI backend on port 8000, then start the React dashboard:
+
+```text
+cd frontend
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`.
+
+## AI provider switching
+
+Set `AI_PROVIDER` to `terra`, `openai` (or `chatgpt`), or `gemini` in `.env`.
+Configure only the matching provider credentials and endpoint. OCR,
+classification, and tender analysis use the selected provider without code
+changes.

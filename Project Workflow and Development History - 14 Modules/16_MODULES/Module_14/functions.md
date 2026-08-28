@@ -2,7 +2,7 @@
 
   Function   Purpose   Status    File   Tests
   ---------- --------- --------- ------ -------
-  handle_event   Receive and route an incoming notification-worthy event   Planned    ---    ---
-  check_duplicate   Check whether this event was already notified   Planned    ---    ---
-  deliver_notification   Send the notification via the configured channel   Planned    ---    ---
-  record_notification_status   Persist delivery status for an event   Planned    ---    ---
+  handle_event   Receive, deduplicate, and record an event   Done    app/notifications.py    test_notifications.py
+  check_duplicate   Check whether this event was already notified   Done    app/notifications.py    test_notifications.py
+  deliver_notification   Invoke the configured delivery callback   Done    app/notifications.py    test_notifications.py
+  record_notification_status   Persist unread/failed status   Done    app/notifications.py    test_notifications.py

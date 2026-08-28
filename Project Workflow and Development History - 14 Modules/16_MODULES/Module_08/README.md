@@ -23,12 +23,13 @@ AI Classification
 
 ## Current status
 
-Planned
+Implemented (0.1.1)
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+The OCR adapter sends low-quality documents to the configured
+OpenAI-compatible GPT-5.6 Terra endpoint, validates page-aware JSON output,
+normalizes text, and persists page-level OCR results.
 
 ## Dependencies
 
@@ -50,7 +51,8 @@ this module.
 
 ## Known limitations
 
--   Not yet implemented.
+-   Requires `TERRA_API_KEY` and `TERRA_API_BASE_URL`.
+-   Provider responses must contain non-empty page results.
 
 ## Current active task
 

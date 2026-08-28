@@ -23,12 +23,13 @@ AI Tender Analysis
 
 ## Current status
 
-Planned
+Implemented (0.1.1)
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+The module builds a versioned classification prompt, calls the configured
+GPT-5.6 Terra OpenAI-compatible endpoint, validates labels and evidence
+against stored page text, and persists model/prompt metadata.
 
 ## Dependencies
 
@@ -50,7 +51,8 @@ this module.
 
 ## Known limitations
 
--   Not yet implemented.
+-   Low-confidence results are flagged for manual review.
+-   Provider outages are surfaced as explicit API failures.
 
 ## Current active task
 

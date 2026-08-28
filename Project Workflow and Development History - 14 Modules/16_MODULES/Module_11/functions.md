@@ -2,7 +2,7 @@
 
   Function   Purpose   Status    File   Tests
   ---------- --------- --------- ------ -------
-  render_tender_list   Show filtered/sorted tender list   Planned    ---    ---
-  render_tender_detail   Show analysis and evidence for a tender   Planned    ---    ---
-  render_source_health   Show scan/source health status   Planned    ---    ---
-  submit_decision   Record a bid/no-bid decision   Planned    ---    ---
+  render_tender_list   Show searchable/filtered tender list   Done    frontend/src/Dashboard.tsx    ---
+  render_tender_detail   Show selected tender and source link   Done    frontend/src/Dashboard.tsx    ---
+  render_source_health   Reserved for source health panel   Pending    Module 13    ---
+  submit_decision   Reserved for decision action handler   Pending    Module 12    ---
