@@ -27,3 +27,26 @@ conversation. Never leave a vague handoff.
 - Created .env at project root with DATABASE_URL (Postgres connection string, password URL-encoded). Verified it loads correctly via python-dotenv. Confirmed .env is excluded from git via .gitignore; only .env.example is committed.
 
 Exact next action: write SQLAlchemy models for Module 03 matching schema in 17_SOFTWARE_DEVELOPMENT_SPECIFICATION.md Section 1, then create the tables in tender_scanner.
+
+## 2026-08-28 18:50 (Session 3)
+
+- Implemented Module 03 initial database layer.
+- Added `app/database.py` with `.env` loading, SQLAlchemy engine,
+  declarative `Base`, session factory, and `get_db()` helper.
+- Added `app/models.py` with ORM models for the 10 tables specified in
+  `17_SOFTWARE_DEVELOPMENT_SPECIFICATION.md` Section 1.
+- Added `scripts/create_tables.py` and ran it successfully against the
+  configured local PostgreSQL `tender_scanner` database.
+- Verified PostgreSQL contains: `sources`, `tenders`,
+  `tender_versions`, `documents`, `document_pages`, `classifications`,
+  `tender_analysis`, `decisions`, `job_status`, and `notifications`.
+- Updated `.env.example` so committed config uses placeholder
+  credentials only.
+- Updated `.gitignore` to ignore Python `__pycache__/` directories.
+- Tests run: `python -m compileall app scripts`; metadata import check
+  confirmed 10 registered tables; SQLAlchemy inspector confirmed 10
+  tables exist in PostgreSQL.
+
+Exact next action: add focused database tests for model metadata,
+constraints, and session creation, then decide whether to add Alembic
+migrations before implementing Module 01/02 write paths.

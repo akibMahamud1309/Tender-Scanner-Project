@@ -1,0 +1,1 @@
+"""Tender Scanner application package."""

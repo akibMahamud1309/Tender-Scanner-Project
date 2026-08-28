@@ -1,5 +1,16 @@
 # 14 --- CHANGE LOG
 
+## 2026-08-28 18:50
+
+- Implemented Module 03 initial database schema code:
+  `app/database.py`, `app/models.py`, and `scripts/create_tables.py`.
+- Created/verified the 10-table PostgreSQL schema specified in
+  `17_SOFTWARE_DEVELOPMENT_SPECIFICATION.md` Section 1.
+- Updated `.env.example` to use placeholder credentials only.
+- Updated `.gitignore` to ignore Python `__pycache__/` directories.
+- Updated Module 03 README, architecture, workflow, functions,
+  compatibility, and version docs.
+
 ## 2026-08-28
 
 - Populated real (non-template) documentation for Modules 04-14:

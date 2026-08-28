@@ -7,3 +7,4 @@ version.md.
   Module                     Version Status
   ------------------------ --------- ---------
   01 --- Source Registry       0.1.0 Planned
+  03 --- Database              0.1.1 Implemented - initial schema

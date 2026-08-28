@@ -8,30 +8,39 @@ application.
 ## Role in the system
 
 ``` text
-Previous module
-      ↓
+Source Registry / Source Scanner / Pipeline modules
+      ->
 Database
-      ↓
-Next module
+      ->
+API / Dashboard / downstream modules
 ```
 
 ## Responsibilities
 
--   Implement only responsibilities belonging to this module.
--   Provide documented inputs and outputs.
--   Report errors without silently hiding them.
--   Maintain its own version and compatibility records.
--   Keep interfaces stable unless an API/architecture change is
-    documented.
+- Implement only responsibilities belonging to this module.
+- Provide documented inputs and outputs.
+- Report errors without silently hiding them.
+- Maintain its own version and compatibility records.
+- Keep interfaces stable unless an API/architecture change is documented.
+- Define ORM/data-access layer.
+- Manage PostgreSQL schema creation and future migrations.
+- Persist sources, tenders, documents, analysis, decisions, and history.
+- Enforce appropriate keys, constraints, and indexes.
 
 ## Current status
 
-In Progress
+Implemented - initial schema
 
 ## Current implementation
 
-No application implementation has been established yet. Agents must
-inspect the repository before updating this statement.
+Initial SQLAlchemy persistence layer is implemented:
+
+- `app/database.py` loads `DATABASE_URL`, creates the SQLAlchemy engine,
+  defines `Base`, and provides `SessionLocal` / `get_db()`.
+- `app/models.py` defines the 10 PostgreSQL tables from
+  `17_SOFTWARE_DEVELOPMENT_SPECIFICATION.md` Section 1.
+- `scripts/create_tables.py` imports the models and runs
+  `Base.metadata.create_all()` against the configured local database.
 
 ## Dependencies
 
@@ -43,24 +52,45 @@ See `architecture.md`.
 
 ## Database interaction
 
-Document all tables, queries, migrations, or database events used by
-this module.
+Implemented ORM tables:
+
+- `sources`
+- `tenders`
+- `tender_versions`
+- `documents`
+- `document_pages`
+- `classifications`
+- `tender_analysis`
+- `decisions`
+- `job_status`
+- `notifications`
+
+Tables were created/verified in the local `tender_scanner` PostgreSQL
+database on 2026-08-28.
 
 ## Security
 
-Document security assumptions and untrusted inputs.
+Secrets are loaded from the root `.env` file via `python-dotenv`.
+`.env` remains ignored by git. `.env.example` contains placeholder
+credentials only.
 
 ## Known limitations
 
--   Not yet implemented.
+- No Alembic migration setup yet; current table creation uses SQLAlchemy
+  `create_all()`.
+- No repository/data-access helper functions beyond session creation.
+- No tests have been added yet.
 
 ## Current active task
 
-Environment and schema design complete. Writing SQLAlchemy models next.
+Initial schema implementation complete. Next active task is to add tests
+and decide whether to introduce Alembic before further schema changes.
 
 ## Exact next action
 
-Write SQLAlchemy models (starting with `sources`, then `tenders`, `tender_versions`, `documents`, `document_pages`, `classifications`, `tender_analysis`, `decisions`, `job_status`, `notifications`) per 17_SOFTWARE_DEVELOPMENT_SPECIFICATION.md Section 1. Then create the tables in the `tender_scanner` database via SQLAlchemy `create_all()` or Alembic migration.
+Add focused database tests that verify model metadata, required
+constraints, and session creation. Then choose Alembic migration setup
+before building Module 01/02 write paths against these models.
 
 ## Agent continuation rule
 
@@ -69,11 +99,6 @@ project history/decision/compatibility files. Before ending a session,
 update the module history and the top-level history with the exact work
 completed and next action.
 
-## Expected responsibilities
-- Define ORM/data-access layer.
-- Manage PostgreSQL migrations.
-- Persist sources, tenders, documents, analysis, decisions, and history.
-- Enforce appropriate keys, constraints, and indexes.
-
 ## Database direction
+
 PostgreSQL is the approved primary database direction.
