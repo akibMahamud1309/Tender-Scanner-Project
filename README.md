@@ -29,12 +29,11 @@ agents.
 
 ## Build status
 
-- Modules 01–02 (Source Registry, Source Scanner): documented, not yet
-  implemented.
-- Module 03 (Database): initial SQLAlchemy schema, Alembic baseline, and
-  focused unit tests implemented.
-- Modules 04–14: documented (purpose, requirements, architecture, workflow),
-  not yet implemented.
+- Modules 01–14 have initial implementations, tests, and documentation.
+- Backend validation currently passes 58 tests.
+- The React/Vite dashboard builds successfully.
+- PostgreSQL is running locally and the database is aligned with Alembic
+  revision `20260828_0002`.
 
 ## Tech direction
 
@@ -44,9 +43,14 @@ local OCR, local document storage.
 ## Database development
 
 Install runtime and development dependencies with
-`python -m pip install -r requirements-dev.txt`. Set `DATABASE_URL` in a
+`python -m pip install -r requirements-dev.txt`. Set `DATABASE_URL` in the
 root `.env` file, then run `alembic upgrade head` to apply migrations and
-`python -m pytest tests -q` to run the database tests.
+`python -m pytest tests -q` to run the tests.
+
+If the database was created before Alembic tracking was enabled, compare the
+existing schema first. When it matches the initial migration, run
+`alembic stamp 20260828_0001` followed by `alembic upgrade head`. Never drop
+existing tables merely to resolve a migration-history mismatch.
 
 ## Dashboard development
 
@@ -59,6 +63,18 @@ npm run dev
 ```
 
 Open `http://localhost:5173`.
+
+### Start the FastAPI backend
+
+From the project root:
+
+```text
+python -m uvicorn app.main:app --reload --port 8000
+```
+
+Open `http://127.0.0.1:8000/docs` for the API controls. To scan an approved
+source, create it with `POST /api/v1/sources`, then trigger
+`POST /api/v1/sources/{source_id}/scan`.
 
 ## AI provider switching
 

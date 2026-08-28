@@ -66,6 +66,20 @@ conversation. Never leave a vague handoff.
 - All 14 planned modules now have initial implementations; next action is
   integration hardening and end-to-end validation.
 
+## 2026-08-28 - Database migration reconciliation
+
+- Verified the local PostgreSQL server accepts connections on port 5432.
+- Confirmed the existing database contained all expected application tables.
+- Compared the live schema with the ORM models and found only the
+  `tenders.metadata` column missing.
+- Safely stamped the existing initial schema at Alembic revision
+  `20260828_0001`, then applied revision `20260828_0002`.
+- Verified the database is now at revision `20260828_0002` with no missing
+  expected tables or columns.
+- Exact next action: use the API documentation at
+  `http://127.0.0.1:8000/docs` to create an approved source and trigger its
+  scan.
+
 ## 2026-08-28 17:05 (Session 2)
 
 - Set up local development environment: Python 3.12.10 installed via `py install manager` (alongside 3.13.5, 3.14.7), venv created in project root.

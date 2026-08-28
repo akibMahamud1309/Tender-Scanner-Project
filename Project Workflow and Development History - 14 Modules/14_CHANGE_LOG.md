@@ -103,6 +103,15 @@
 - Added in-process scheduler helpers for due scans, overlap prevention,
   exponential backoff, lifecycle status recording, tests, and API visibility.
 
+## 2026-08-28 - Database migration reconciliation
+
+- Verified the local PostgreSQL connection and existing application schema.
+- Stamped the pre-existing initial schema at `20260828_0001` without deleting
+  data.
+- Applied the pending metadata migration and verified Alembic revision
+  `20260828_0002`.
+- Documented the safe reconciliation procedure and source-scan startup steps.
+
 ## 2026-08-28 - Module 14 Notifications
 
 - Added notification event deduplication, durable statuses, delivery failure
